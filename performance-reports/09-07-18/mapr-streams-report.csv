@@ -1,0 +1,4 @@
+type,time,count,throughput(msgs/s),max_latency(ms),mean_latency(ms),min_latency(ms),stddev_latency(ms),p50_latency(ms),p75_latency(ms),p95_latency(ms),p98_latency(ms),p99_latency(ms),p999_latency(ms)
+Identity,Wed Jul 04 17:27:36 PDT 2018,499,92,5033.000,1335.599,439.000,1690.284,563.000,622.000,5033.000,5033.000,5033.000,5033.000
+Repartition,Thu Jul 05 05:30:19 PDT 2018,2994,1173,2530.000,1741.190,653.000,429.747,1776.000,2101.250,2345.000,2446.100,2469.050,2526.005
+WordCount,Thu Jul 05 17:33:02 PDT 2018,1996,367,5298.000,2899.513,1228.000,1444.672,2432.500,4721.250,5246.000,5256.000,5274.030,5297.003
