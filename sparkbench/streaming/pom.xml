@@ -32,90 +32,12 @@
       <version>${spark.version}</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-kafka-0-9_${scala.binary.version}</artifactId>
+      <version>${spark.streaming.kafka.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
-  <profiles>
-    <profile>
-      <id>defaultSpark</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming-kafka_${scala.binary.version}</artifactId>
-          <version>1.6.0</version>
-        </dependency>
-      </dependencies>
-      <activation>
-        <property>
-          <name>!spark</name>
-        </property>
-      </activation>
-    </profile>
-
-    <profile>
-      <id>spark1.6</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming-kafka_${scala.binary.version}</artifactId>
-          <version>1.6.0</version>
-        </dependency>
-      </dependencies>
-      <activation>
-        <property>
-          <name>spark</name>
-          <value>1.6</value>
-        </property>
-      </activation>
-    </profile>
-
-    <profile>
-      <id>spark2.0</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming-kafka-0-8_2.11</artifactId>
-          <version>2.0.0</version>
-        </dependency>
-      </dependencies>
-      <activation>
-        <property>
-          <name>spark</name>
-          <value>2.0</value>
-        </property>
-      </activation>
-    </profile>
-
-    <profile>
-      <id>spark2.1</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.spark</groupId>
-          <artifactId>spark-streaming-kafka-0-9_2.11</artifactId>
-          <version>2.2.1-mapr-SNAPSHOT</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-      <activation>
-        <property>
-          <name>spark</name>
-          <value>2.1</value>
-        </property>
-      </activation>
-    </profile>
-    <profile>
-      <id>cluster6.0.0</id>
-      <properties>
-        <mapr.streams.version>6.0.0-mapr-beta</mapr.streams.version>
-        <mapr.fs.version>6.0.0-mapr-beta</mapr.fs.version>
-        <kafka-clients>0.9.0.0-mapr-1707-streams-6.0.0-beta</kafka-clients>
-      </properties>
-      <activation>
-        <property>
-          <name>cluster</name>
-          <value>6.0.0</value>
-        </property>
-      </activation>
-    </profile>
-
-  </profiles>
 </project>

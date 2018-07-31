@@ -41,25 +41,22 @@
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka_${scala.binary.version}</artifactId>
-      <version>1.0.1-mapr-SNAPSHOT</version>
+      <version>${kafka.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
-      <version>1.0.1-mapr-SNAPSHOT</version>
-      <!--scope>provided</scope-->
+      <version>${kafka.clients.version}</version>
     </dependency>
     <dependency>
       <groupId>com.mapr.hadoop</groupId>
       <artifactId>maprfs</artifactId>
-      <version>6.0.1-mapr-SNAPSHOT</version>
-      <!--scope>provided</scope-->
+      <version>${maprfs.version}</version>
     </dependency>
     <dependency>
       <groupId>com.mapr.streams</groupId>
       <artifactId>mapr-streams</artifactId>
-      <version>6.0.1-mapr-SNAPSHOT</version>
-      <!--scope>provided</scope-->
+      <version>${mapr.streams.version}</version>
     </dependency>
   </dependencies>
 
@@ -149,21 +146,6 @@
         <property>
           <name>scala</name>
           <value>2.11</value>
-        </property>
-      </activation>
-    </profile>
-
-    <profile>
-      <id>cluster6.0.0</id>
-      <properties>
-        <mapr.streams.version>6.0.0-mapr-beta</mapr.streams.version>
-        <mapr.fs.version>6.0.0-mapr-beta</mapr.fs.version>
-        <kafka-clients>0.9.0.0-mapr-1707-streams-6.0.0-beta</kafka-clients>
-      </properties>
-      <activation>
-        <property>
-          <name>cluster</name>
-          <value>6.0.0</value>
         </property>
       </activation>
     </profile>

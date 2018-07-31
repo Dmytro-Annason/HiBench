@@ -37,7 +37,19 @@
     <dependency>
       <groupId>com.mapr.db</groupId>
       <artifactId>maprdb-spark</artifactId>
-      <version>6.0.0-mapr</version>
+      <version>${maprdb.spark.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mapr.db</groupId>
+      <artifactId>maprdb</artifactId>
+      <version>${maprdb.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ojai</groupId>
+      <artifactId>ojai-scala</artifactId>
+      <version>${ojai.scala.version}</version>
       <scope>provided</scope>
     </dependency>
 

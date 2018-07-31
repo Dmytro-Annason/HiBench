@@ -90,7 +90,7 @@ object ScalaSparkMaprDBBench {
     val rankingsData = spark.loadFromMapRDB(PATH_TO_DBS + secondExpectedTableName)
 
     // filter uservisits data by date
-    val prejoinedUservisitsData = uservisitsData.select("sourceip", "desturl", "adrevenue")
+    val prejoinedUservisitsData = uservisitsData.select("sourceip", "desturl", "adrevenue", "visitdate")
       .filter(uservisitsData("visitdate").geq(lit("1999-01-01")))
       .filter(uservisitsData("visitdate").leq(lit("2000-01-01")))
 
