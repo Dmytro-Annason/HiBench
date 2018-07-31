@@ -14,10 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+current_dir=`dirname "$0"`
+current_dir=`cd "$current_dir"; pwd`
+root_dir=${current_dir}/../../../../..
+workload_config=${root_dir}/conf/workloads/structuredStreaming/groupBy.conf
+. "${root_dir}/bin/functions/load_bench_config.sh"
+
+enter_bench MetricsReader ${workload_config} ${current_dir}
+show_bannar start
+
+printFullLog
+
+RESULT_DIR="/${STREAMING_TESTCASE}/"
+RESULT_FILE="${RESULT_DIR}${STREAMING_TESTCASE}.res"
+
+hadoop fs -cat ${RESULT_FILE} > "${root_dir}/report/${STREAMING_TESTCASE}.csv"
 
 
-export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true $HADOOP_CLIENT_OPTS"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+gen_mapr_streams_report GroupBy "${root_dir}/report/${TOPIC}.csv"
 
-export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_PREFIX}/lib/native
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_PREFIX/lib"
+hadoop fs -rm -r  ${RESULT_DIR}
+show_bannar finish
+

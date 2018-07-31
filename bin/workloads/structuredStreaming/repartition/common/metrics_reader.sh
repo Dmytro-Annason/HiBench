@@ -14,10 +14,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+current_dir=`dirname "$0"`
+current_dir=`cd "$current_dir"; pwd`
+root_dir=${current_dir}/../../../../..
+workload_config=${root_dir}/conf/workloads/structuredStreaming/repartition.conf
+. "${root_dir}/bin/functions/load_bench_config.sh"
 
+enter_bench MetricsReader ${workload_config} ${current_dir}
+show_bannar start
 
-export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true $HADOOP_CLIENT_OPTS"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+printFullLog
 
-export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_PREFIX}/lib/native
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_PREFIX/lib"
+TOPIC=`get_latest_test_topic`
+if [ -z "$TOPIC" ]; then
+    echo "ERROR: Can not find latest topic for test stream."
+    exit 1
+fi
+
+CMD="${JAVA_BIN} -cp ${COMMON_JAR} com.intel.hibench.common.streaming.metrics.MetricsReader ${STREAMING_ZKADDR} ${TOPIC} ${METRICS_READER_OUTPUT_DIR} ${METRICE_READER_SAMPLE_NUM} ${METRICS_READER_THREAD_NUM}"
+
+execute_withlog $CMD
+
+gen_mapr_streams_report structRepartition "${root_dir}/report/${TOPIC}.csv"
+show_bannar finish

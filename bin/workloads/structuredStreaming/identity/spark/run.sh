@@ -14,10 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+current_dir=`dirname "$0"`
+current_dir=`cd "$current_dir"; pwd`
+root_dir=${current_dir}/../../../../..
+workload_config=${root_dir}/conf/workloads/structuredStreaming/identity.conf
+. "${root_dir}/bin/functions/load_bench_config.sh"
 
+enter_bench SparkStructuredStreamingIdentity ${workload_config} ${current_dir}
+show_bannar start
 
-export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true $HADOOP_CLIENT_OPTS"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+START_TIME=`timestamp`
+printFullLog
+run_spark_job com.intel.hibench.sparkbench.structuredstreaming.RunBench $SPARKBENCH_PROPERTIES_FILES
+END_TIME=`timestamp`
 
-export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_PREFIX}/lib/native
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_PREFIX/lib"
+gen_report ${START_TIME} ${END_TIME} 0
+show_bannar finish
+leave_bench

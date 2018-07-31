@@ -3,6 +3,10 @@ streaming.identity
 streaming.repartition
 streaming.wordcount
 
+structuredStreaming.identity
+structuredStreaming.repartition
+structuredStreaming.groupBy
+
 sql.aggregation
 sql.join
 sql.scan

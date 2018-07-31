@@ -114,6 +114,7 @@
         <module>graph</module>
         <module>sql</module>
         <module>streaming</module>
+        <module>structuredStreaming</module>
       </modules>
       <activation>
         <property>
