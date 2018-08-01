@@ -42,7 +42,7 @@ class KafkaCollector(zkConnect: String, metricsTopic: String,
     println("Starting MetricsReader for kafka topic: " + metricsTopic)
 
     partitions.foreach(partition => {
-      val job = new FetchJob(zkConnect, metricsTopic, partition, histogram)
+      val job = new FetchJob(zkConnect, metricsTopic, partition, sampleNumber / partitions.size, histogram)
       val fetchFeature = threadPool.submit(job)
       fetchResults += fetchFeature
     })

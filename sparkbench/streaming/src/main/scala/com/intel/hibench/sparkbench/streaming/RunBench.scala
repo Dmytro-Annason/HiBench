@@ -75,11 +75,11 @@ object RunBench {
 
     //TODO add property which handle this
     // Remove stream and all topics before start data processing
-     MetricsUtil.deleteStream(streamPath)
+//     MetricsUtil.deleteStream(streamPath)
 
     //TODO add property which handle this
     // Create stream and topic where original data should be
-    MetricsUtil.createStream(streamPath)
+//    MetricsUtil.createStream(streamPath)
     MetricsUtil.createTopic(streamPath, topic, topicPartitions)
 
     // Create topic where we generate data with processing timestamps with format

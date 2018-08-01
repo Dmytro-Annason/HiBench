@@ -33,6 +33,23 @@ if [ -f ${MAPR_STREAMS_REPORT} ] ; then
     rm ${MAPR_STREAMS_REPORT}
 fi
 
+# hotfix
+if ! [ -x "$(command -v jq)" ]; then
+  echo "Error: 'jq' utility is not installed. Install it with 'sudo yum install jq' and try again." >&2
+  exit 1
+fi
+
+maprcli stream delete -path /test-stream
+maprcli stream create -path /test-stream
+# topics can be left after stream recreation
+topics=$(maprcli stream topic list -path /test-stream -json | jq -r '.data[].topic')
+for topic in "${topics[@]}"
+do
+   :
+   maprcli stream topic delete -path /test-stream -topic $topic
+done
+
+
 for benchmark in `cat $root_dir/conf/mapr-spark-benchmarks.lst`; do
     if [[ $benchmark == \#* ]]; then
         continue

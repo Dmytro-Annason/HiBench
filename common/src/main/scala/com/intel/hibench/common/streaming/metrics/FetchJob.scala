@@ -25,22 +25,34 @@ import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord, KafkaC
 
 import scala.collection.JavaConverters._
 
-class FetchJob(zkConnect: String, topic: String, partition: Int,
-    histogram: Histogram) extends Callable[FetchJobResult] {
+class FetchJob(zkConnect: String, topic: String, partition: Int, recNum: Long, histogram: Histogram)
+  extends Callable[FetchJobResult] {
 
   override def call(): FetchJobResult = {
     val result = new FetchJobResult()
     val consumer = new KafkaConsumer[String, String](consumerProperties)
 
     consumer.subscribe(List(topic).asJava)
-    val records = consumer.poll(1000).asScala.filter(_.offset != 0)
-    for (record: ConsumerRecord[String, String] <- records) {
-      val times = record.value().split(":")
-      val startTime = times(0).toLong
-      val endTime = times(1).toLong
-      // correct negative value which might be caused by difference of system time
-      histogram.update(Math.max(0, endTime - startTime))
-      result.update(startTime, endTime)
+
+    var lastSuccessfulFetch = System.currentTimeMillis()
+    var totalRecs = 0
+    while(totalRecs < recNum && System.currentTimeMillis() - lastSuccessfulFetch < 30000) {
+
+      val records = consumer.poll(1000).asScala.filter(_.offset != 0)
+      for (record: ConsumerRecord[String, String] <- records) {
+        val times = record.value().split(":")
+        val startTime = times(0).toLong
+        val endTime = times(1).toLong
+        // correct negative value which might be caused by difference of system time
+        histogram.update(Math.max(0, endTime - startTime))
+        result.update(startTime, endTime)
+      }
+
+      if(records.nonEmpty) {
+        lastSuccessfulFetch = System.currentTimeMillis()
+        totalRecs += records.size
+      }
+
     }
 
     println(s"Collected ${result.count} results for partition: ${partition}")
@@ -67,14 +79,14 @@ class FetchJobResult(var minTime: Long, var maxTime: Long, var count: Long) {
 
   def this() = this(Long.MaxValue, Long.MinValue, 0)
 
-  def update(startTime: Long ,endTime: Long): Unit = {
+  def update(startTime: Long, endTime: Long): Unit = {
     count += 1
 
-    if(startTime < minTime) {
+    if (startTime < minTime) {
       minTime = startTime
     }
 
-    if(endTime > maxTime) {
+    if (endTime > maxTime) {
       maxTime = endTime
     }
   }
