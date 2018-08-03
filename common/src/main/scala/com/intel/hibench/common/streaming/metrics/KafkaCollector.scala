@@ -29,9 +29,11 @@ import scala.collection.mutable.ArrayBuffer
 
 
 class KafkaCollector(zkConnect: String, metricsTopic: String,
-    outputDir: String, sampleNumber: Int, desiredThreadNum: Int) extends LatencyCollector {
+    outputDir: String, startingOffsetForEachPartition: Int, sampleNumber: Int, desiredThreadNum: Int) extends LatencyCollector {
 
-  private val histogram = new Histogram(new UniformReservoir(sampleNumber))
+
+  private val reservoir = if (sampleNumber > 0) new UniformReservoir(sampleNumber) else new UniformReservoir()
+  private val histogram = new Histogram(reservoir)
   private val threadPool = Executors.newFixedThreadPool(desiredThreadNum)
   private val fetchResults = ArrayBuffer.empty[Future[FetchJobResult]]
 
@@ -41,11 +43,15 @@ class KafkaCollector(zkConnect: String, metricsTopic: String,
 
     println("Starting MetricsReader for kafka topic: " + metricsTopic)
 
-    partitions.foreach(partition => {
-      val job = new FetchJob(zkConnect, metricsTopic, partition, sampleNumber / partitions.size, histogram)
+    val remainder = if(sampleNumber < 0) 0 else sampleNumber % partitions.size
+    for((partition, index) <- partitions.zipWithIndex){
+
+      val fetchRecs = if(sampleNumber < 0) -1 else if(index < partitions.size - 1) sampleNumber / partitions.size else sampleNumber / partitions.size + remainder
+
+      val job = new FetchJob(zkConnect, metricsTopic, partition, startingOffsetForEachPartition, fetchRecs, histogram)
       val fetchFeature = threadPool.submit(job)
       fetchResults += fetchFeature
-    })
+    }
 
     threadPool.shutdown()
     threadPool.awaitTermination(30, TimeUnit.MINUTES)
