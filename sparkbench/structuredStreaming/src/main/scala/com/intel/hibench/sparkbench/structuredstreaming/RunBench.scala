@@ -71,9 +71,6 @@ object RunBench {
     // Test execution time in milliseconds
     val execTime: Long = conf.getProperty(StreamBenchConfig.EXECUTION_TIME_MS).toLong
 
-    MetricsUtil.deleteTopic(streamPath, topic)
-    MetricsUtil.deleteStream(streamPath)
-    MetricsUtil.createStream(streamPath)
     MetricsUtil.createTopic(streamPath, topic, topicPartitions)
 
     MetricsUtil.createTopic(streamPath, reporterTopic.substring(reporterTopic.indexOf(":") + 1), topicPartitions)
