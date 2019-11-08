@@ -17,18 +17,14 @@
 
 package com.intel.hibench.sparkbench.streaming
 
-import java.nio.ByteBuffer
-import java.util.concurrent.atomic.{AtomicBoolean, AtomicInteger}
-
 import com.intel.hibench.common.HiBenchConfig
 import com.intel.hibench.common.streaming.metrics.MetricsUtil
 import com.intel.hibench.common.streaming.{ConfigLoader, Platform, StreamBenchConfig, TestCase}
 import com.intel.hibench.sparkbench.streaming.application._
 import com.intel.hibench.sparkbench.streaming.util.SparkBenchConfig
-import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
-import org.apache.spark.streaming.kafka09.{ConsumerStrategies, KafkaUtils, LocationStrategies}
+import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Milliseconds, StreamingContext}
 
 /**

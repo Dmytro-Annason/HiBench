@@ -40,14 +40,14 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming-kafka-0-9_${scala.binary.version}</artifactId>
-      <version>${spark.streaming.kafka.version}</version>
+      <artifactId>spark-streaming-kafka-0-10_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql-kafka-0-10_${scala.binary.version}</artifactId>
-      <version>${spark.sql.kafka.version}</version>
+      <version>${spark.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

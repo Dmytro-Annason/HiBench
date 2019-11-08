@@ -37,13 +37,13 @@
     <dependency>
       <groupId>com.mapr.db</groupId>
       <artifactId>maprdb-spark</artifactId>
-      <version>${maprdb.spark.version}</version>
+      <version>${spark.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.mapr.db</groupId>
       <artifactId>maprdb</artifactId>
-      <version>${maprdb.version}</version>
+      <version>${core.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
