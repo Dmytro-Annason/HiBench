@@ -4,7 +4,7 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{FSDataOutputStream, FileSystem, Path}
 
 object MFSUtil {
-  val HadoopConfDir = "/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/"
+  val HadoopConfDir = "/opt/mapr/hadoop/hadoop-2.7.4/etc/hadoop/"
   val fs: FileSystem = FileSystem.get(createHadoopConfiguration())
 
 

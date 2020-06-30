@@ -37,7 +37,7 @@ public class CachedData {
   private int next;
   private int totalRecords;
 
-  private final static String HADOOP_CONF_DIR = "/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/";
+  private final static String HADOOP_CONF_DIR = "/opt/mapr/hadoop/hadoop-2.7.4/etc/hadoop/";
   private final static String MAPRFS_PREFIX = "maprfs:///";
 
   public static CachedData getInstance(String seedFile, long fileOffset, String dfsMaster) {

@@ -2,6 +2,6 @@
 
 case "$1" in
     spark)
-      mvn -P sql,sparkbench,websearch,micro,streaming,spark2.3.1,ml,structuredStreaming,graph,scala2.11,!defaultScalaVersion,!allModules clean install
+      /vagrant/private-qa/new-ats/eco/spark/apache-maven-3.3.9/bin/mvn -P sql,sparkbench,websearch,micro,streaming,spark2.4.5.0,ml,structuredStreaming,graph,scala2.12,!defaultScalaVersion,!allModules clean install
       shift 1;;
 esac

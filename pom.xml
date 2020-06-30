@@ -5,32 +5,23 @@
 
   <groupId>com.intel.hibench</groupId>
   <artifactId>hibench</artifactId>
-  <version>6.1-SNAPSHOT</version>
+  <version>6.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>hibench</name>
   <url>http://maven.apache.org</url>
 
   <properties>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
     <encoding>UTF-8</encoding>
-    <scala.version>2.10.4</scala.version>
-    <scala.binary.version>2.10</scala.binary.version>
+    <scala.binary.version>2.12</scala.binary.version>
     <slf4j.version>1.7.5</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
     <scopt.version>3.2.0</scopt.version>
     <mahout.version>0.9</mahout.version>
     <uncommons-maths.version>1.2.2a</uncommons-maths.version>
     <junit.version>3.8.1</junit.version>
-    <scala-maven-plugin.version>3.2.0</scala-maven-plugin.version>
-    <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+    <scala-maven-plugin.version>4.4.0</scala-maven-plugin.version>
     <maven-assembly-plugin.version>2.5.3</maven-assembly-plugin.version>
-    <maven-jar-plugin.version>2.3.2</maven-jar-plugin.version>
-    <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
     <download-maven-plugin.version>1.2.0</download-maven-plugin.version>
-    <jetty.version>8.1.14.v20131031</jetty.version>
-    <scalatest.version>2.2.1</scalatest.version>
-    <scalacheck.version>1.11.3</scalacheck.version>
     <fastutil.version>6.5.15</fastutil.version>
 
     <!--HADOOPBENCH-->
@@ -39,17 +30,12 @@
     <!--SPARKBENCH-->
     <!--Default MapR-related Properties-->
     <!--Will be overridden if spark* profile specified-->
-    <hadoop.mr2.version>2.7.0-mapr-1710</hadoop.mr2.version>
-    <spark.version>2.3.1-mapr-SNAPSHOT</spark.version>
-    <mapr.streams.version>6.1.0-mapr-SNAPSHOT</mapr.streams.version>
-    <maprfs.version>6.1.0-mapr-SNAPSHOT</maprfs.version>
-    <kafka.clients.version>1.1.1-mapr-SNAPSHOT</kafka.clients.version>
-    <kafka.version>1.1.1-mapr-SNAPSHOT</kafka.version>
-    <maprdb.spark.version>2.3.1-mapr-SNAPSHOT</maprdb.spark.version>
-    <spark.streaming.kafka.version>2.3.1-mapr-SNAPSHOT</spark.streaming.kafka.version>
-    <spark.sql.kafka.version>2.3.1-mapr-SNAPSHOT</spark.sql.kafka.version>
-    <maprdb.version>6.1.0-mapr-SNAPSHOT</maprdb.version>
-    <ojai.scala.version>3.0-SNAPSHOT</ojai.scala.version>
+
+    <core.version>6.2.0.0-mapr-SNAPSHOT</core.version>
+    <hadoop.mr2.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.mr2.version>
+    <spark.version>2.4.5.0-mapr-SNAPSHOT</spark.version>
+    <kafka.version>2.1.1-mapr-SNAPSHOT</kafka.version>
+    <ojai.scala.version>3.0-mapr-1808</ojai.scala.version>
 
   </properties>
 
@@ -73,21 +59,22 @@
       <id>mapr-releases</id>
       <url>http://repository.mapr.com/maven/</url>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
       <releases>
         <enabled>true</enabled>
       </releases>
     </repository>
     <repository>
-      <id>mapr-cv</id>
-      <url>http://repository_cv.mapr.com/nexus/content/groups/mapr-public/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>repository_cv</id>
+      <name>Private MapR repo for CyberVision</name>
+      <url>http://maven.corp.maprtech.com/nexus/content/groups/public/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
 
     <repository>
@@ -113,11 +100,6 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
-    <!--repository>
-      <id>scala-tools.org</id>
-      <name>Scala-tools Maven 2 Repository</name>
-      <url>https://oss.sonatype.org/content/groups/scala-tools/</url>
-    </repository-->
   </repositories>
   <pluginRepositories>
     <pluginRepository>
@@ -134,11 +116,17 @@
           <groupId>net.alchim31.maven</groupId>
           <artifactId>scala-maven-plugin</artifactId>
           <version>${scala-maven-plugin.version}</version>
+          <configuration>
+            <scalaVersion>2.12.10</scalaVersion>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <source>11</source>
+            <target>11</target>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -199,30 +187,28 @@
       </activation>
     </profile>
 
-    <!--OVERRIDES VERSIONS PROPERTIES FOR SPARK 2.3.1-->
+    <!--OVERRIDES VERSIONS PROPERTIES FOR SPARK 2.4.0-->
     <profile>
-      <id>spark2.3.1</id>
+      <id>spark2.4.5.0</id>
       <properties>
-        <hadoop.mr2.version>2.7.0-mapr-1710</hadoop.mr2.version>
-        <spark.version>2.3.1-mapr-SNAPSHOT</spark.version>
-        <mapr.streams.version>6.1.0-mapr-SNAPSHOT</mapr.streams.version>
-        <maprfs.version>6.1.0-mapr-SNAPSHOT</maprfs.version>
-        <kafka.clients.version>1.1.1-mapr-SNAPSHOT</kafka.clients.version>
-        <kafka.version>1.1.1-mapr-SNAPSHOT</kafka.version>
-        <maprdb.spark.version>2.3.1-mapr-SNAPSHOT</maprdb.spark.version>
-        <spark.streaming.kafka.version>2.3.1-mapr-SNAPSHOT</spark.streaming.kafka.version>
-        <spark.sql.kafka.version>2.3.1-mapr-SNAPSHOT</spark.sql.kafka.version>
-        <maprdb.version>6.1.0-mapr-SNAPSHOT</maprdb.version>
+        <hadoop.mr2.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.mr2.version>
+        <spark.version>2.4.5.0-mapr-SNAPSHOT</spark.version>
+        <mapr.streams.version>6.2.0.0-mapr-SNAPSHOT</mapr.streams.version>
+        <maprfs.version>6.2.0.0-mapr-SNAPSHOT</maprfs.version>
+        <kafka.clients.version>2.1.1-mapr-SNAPSHOT</kafka.clients.version>
+        <kafka.version>2.1.1-mapr-SNAPSHOT</kafka.version>
+        <maprdb.spark.version>2.4.5.0-mapr-SNAPSHOT</maprdb.spark.version>
+        <spark.streaming.kafka.version>2.4.5.0-mapr-SNAPSHOT</spark.streaming.kafka.version>
+        <spark.sql.kafka.version>2.4.5.0-mapr-SNAPSHOT</spark.sql.kafka.version>
+        <maprdb.version>6.2.0.0-mapr-SNAPSHOT</maprdb.version>
         <ojai.scala.version>3.0-SNAPSHOT</ojai.scala.version>
       </properties>
       <activation>
         <property>
           <name>spark</name>
-          <value>2.3.1</value>
+          <value>2.4.5.0</value>
         </property>
       </activation>
     </profile>
-
-
   </profiles>
 </project>
