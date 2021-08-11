@@ -41,7 +41,7 @@ Create and edit `conf/spark.conf`：
 Set the below properties properly:
 
     hibench.spark.home            The Spark installation location
-    hibench.spark.master          The Spark master, i.e. `spark://xxx:7077`, `yarn-client`
+    hibench.spark.master          The Spark master, i.e. `spark://xxx:7077`, `yarn`
 
 
 ### 4. Run a workload ###

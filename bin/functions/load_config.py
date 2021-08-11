@@ -367,7 +367,7 @@ def probe_hadoop_release():
     # apache
     if not HibenchConf.get("hibench.hadoop.release", ""):
         cmd_release_and_version = HibenchConf['hibench.hadoop.executable'] + ' version | head -1'
-        # version here means, for example apache hadoop {2.7.3}
+        # version here means, for example apache hadoop {2.7.6}
         hadoop_release_and_version = shell(cmd_release_and_version).strip()
 
         HibenchConf["hibench.hadoop.release"] = \

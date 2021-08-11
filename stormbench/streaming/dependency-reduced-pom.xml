@@ -3,7 +3,7 @@
   <parent>
     <artifactId>stormbench</artifactId>
     <groupId>com.intel.hibench</groupId>
-    <version>6.1-SNAPSHOT</version>
+    <version>6.2-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.intel.hibench.stormbench</groupId>

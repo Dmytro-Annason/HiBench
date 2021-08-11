@@ -6,7 +6,7 @@
 
 Append the following properties to `yarn-site` on each node in order to change default memory configs:
 ```
-$ vim /opt/mapr/hadoop/hadoop-2.7.4/etc/hadoop/yarn-site.xml
+$ vim /opt/mapr/hadoop/hadoop-2.7.6/etc/hadoop/yarn-site.xml
 ------------------------------------------------------------
 
 ...
@@ -35,7 +35,7 @@ $ vim /opt/mapr/hadoop/hadoop-2.7.4/etc/hadoop/yarn-site.xml
 
 Append the following properties to `mapred-site` on each node in order to change default memory configs:
 ```
-$ vim /opt/mapr/hadoop/hadoop-2.7.4/etc/hadoop/mapred-site.xml
+$ vim /opt/mapr/hadoop/hadoop-2.7.6/etc/hadoop/mapred-site.xml
 ------------------------------------------------------------
 
 ...
@@ -85,23 +85,23 @@ $ git clone https://github.com/dsergeevmapr/HiBench.git
 
 $ cd HiBench
 
-$ git checkout maprspark-branch-2.4.5
+$ git checkout maprspark-branch-3.1.1
 ```
 
 * Configuration
 
-`maprspark-branch-2.4.4` contains HiBench configured for Spark 2.4.5 on 6.2.0 core. If you want to run tests for 
+`maprspark-branch-3.1.1` contains HiBench configured for Spark 3.1.1 on 6.2.0 core. If you want to run tests for 
 another version of Spark or MapR core you have to define new Maven profile in 
-[HiBench root pom](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-2.4.5/pom.xml#L202) and modify 
-[build.sh](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-2.4.5/build.sh#L5) to use your newly-created 
+[HiBench root pom](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-3.1.1/pom.xml#L202) and modify 
+[build.sh](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-3.1.1/build.sh#L5) to use your newly-created 
 profile instead of `spark2.4.4.0`.
 
-Also [hibench.conf](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-2.4.5/conf/hibench.conf#L88) and 
-[spark.conf](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-2.4.5/conf/spark.conf#L2) contain Kafka and 
+Also [hibench.conf](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-3.1.1/conf/hibench.conf#L88) and 
+[spark.conf](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-3.1.1/conf/spark.conf#L2) contain Kafka and 
 Spark location, which must be changed in the case of version change.
 
 Note that `hibench.streambench.zkHost` property of 
-[hibench.conf](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-2.4.5/conf/hibench.conf) specifies 
+[hibench.conf](https://github.com/dsergeevmapr/HiBench/blob/maprspark-branch-3.1.1/conf/hibench.conf) specifies 
 ZooKeeper nodes.
 
 Other properties can be left unchanged.

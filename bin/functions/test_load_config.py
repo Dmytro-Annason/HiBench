@@ -93,11 +93,11 @@ def test_probe_hadoop_examples_jars():
         return test
 
     hadoop_examples_jars_list = [["apache0",
-                                  "/tmp/test/hadoop_home/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar"],
+                                  "/tmp/test/hadoop_home/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar"],
                                  ["cdh0",
-                                  "/tmp/test/hadoop_home/share/hadoop/mapreduce2/hadoop-mapreduce-examples-2.7.3.jar"],
+                                  "/tmp/test/hadoop_home/share/hadoop/mapreduce2/hadoop-mapreduce-examples-2.7.6.jar"],
                                  ["cdh1",
-                                  "/tmp/test/hadoop_home/../../jars/hadoop-mapreduce-examples-2.7.3.jar"],
+                                  "/tmp/test/hadoop_home/../../jars/hadoop-mapreduce-examples-2.7.6.jar"],
                                  ["hdp0",
                                   "/tmp/test/hadoop_home/hadoop-mapreduce-examples.jar"]]
 
@@ -140,11 +140,11 @@ def test_probe_hadoop_test_examples_jars():
         return test
 
     hadoop_test_examples_jars_list = [["apache0",
-                                       "/tmp/test/hadoop_home/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.3-tests.jar"],
+                                       "/tmp/test/hadoop_home/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.6-tests.jar"],
                                       ["cdh0",
-                                       "/tmp/test/hadoop_home/share/hadoop/mapreduce2/hadoop-mapreduce-client-jobclient-2.7.3-tests.jar"],
+                                       "/tmp/test/hadoop_home/share/hadoop/mapreduce2/hadoop-mapreduce-client-jobclient-2.7.6-tests.jar"],
                                       ["cdh1",
-                                       "/tmp/test/hadoop_home/../../jars/hadoop-mapreduce-client-jobclient-2.7.3-tests.jar"],
+                                       "/tmp/test/hadoop_home/../../jars/hadoop-mapreduce-client-jobclient-2.7.6-tests.jar"],
                                       ["hdp0",
                                        "/tmp/test/hadoop_home/hadoop-mapreduce-client-jobclient-tests.jar"]]
 

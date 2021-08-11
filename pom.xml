@@ -32,9 +32,9 @@
     <!--Will be overridden if spark* profile specified-->
 
     <core.version>6.2.0.0-mapr-SNAPSHOT</core.version>
-    <hadoop.mr2.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.mr2.version>
-    <spark.version>2.4.5.0-mapr-SNAPSHOT</spark.version>
-    <kafka.version>2.1.1-mapr-SNAPSHOT</kafka.version>
+    <hadoop.mr2.version>2.7.6.0-mapr-720-SNAPSHOT</hadoop.mr2.version>
+    <spark.version>3.1.1.0-mapr-SNAPSHOT</spark.version>
+    <kafka.version>2.6.1.0-mapr-SNAPSHOT</kafka.version>
     <ojai.scala.version>3.0-mapr-1808</ojai.scala.version>
 
   </properties>
@@ -68,7 +68,7 @@
     <repository>
       <id>repository_cv</id>
       <name>Private MapR repo for CyberVision</name>
-      <url>http://maven.corp.maprtech.com/nexus/content/groups/public/</url>
+      <url>http://df-mvn-dev.mip.storage.hpecorp.net/nexus/content/groups/public/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -189,24 +189,24 @@
 
     <!--OVERRIDES VERSIONS PROPERTIES FOR SPARK 2.4.0-->
     <profile>
-      <id>spark2.4.5.0</id>
+      <id>spark3.1.1.0</id>
       <properties>
-        <hadoop.mr2.version>2.7.4.0-mapr-1908-SNAPSHOT</hadoop.mr2.version>
-        <spark.version>2.4.5.0-mapr-SNAPSHOT</spark.version>
+        <hadoop.mr2.version>2.7.6.0-mapr-720-SNAPSHOT</hadoop.mr2.version>
+        <spark.version>3.1.1.0-mapr-SNAPSHOT</spark.version>
         <mapr.streams.version>6.2.0.0-mapr-SNAPSHOT</mapr.streams.version>
         <maprfs.version>6.2.0.0-mapr-SNAPSHOT</maprfs.version>
-        <kafka.clients.version>2.1.1-mapr-SNAPSHOT</kafka.clients.version>
-        <kafka.version>2.1.1-mapr-SNAPSHOT</kafka.version>
-        <maprdb.spark.version>2.4.5.0-mapr-SNAPSHOT</maprdb.spark.version>
-        <spark.streaming.kafka.version>2.4.5.0-mapr-SNAPSHOT</spark.streaming.kafka.version>
-        <spark.sql.kafka.version>2.4.5.0-mapr-SNAPSHOT</spark.sql.kafka.version>
+        <kafka.clients.version>2.6.1.0-mapr-SNAPSHOT</kafka.clients.version>
+        <kafka.version>2.6.1.0-mapr-SNAPSHOT</kafka.version>
+        <maprdb.spark.version>3.1.1.0-mapr-SNAPSHOT</maprdb.spark.version>
+        <spark.streaming.kafka.version>3.1.1.0-mapr-SNAPSHOT</spark.streaming.kafka.version>
+        <spark.sql.kafka.version>3.1.1.0-mapr-SNAPSHOT</spark.sql.kafka.version>
         <maprdb.version>6.2.0.0-mapr-SNAPSHOT</maprdb.version>
         <ojai.scala.version>3.0-SNAPSHOT</ojai.scala.version>
       </properties>
       <activation>
         <property>
           <name>spark</name>
-          <value>2.4.5.0</value>
+          <value>3.1.1.0</value>
         </property>
       </activation>
     </profile>
