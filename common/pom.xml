@@ -23,13 +23,13 @@
   <parent>
     <groupId>com.intel.hibench</groupId>
     <artifactId>hibench</artifactId>
-    <version>6.1-SNAPSHOT</version>
+    <version>6.2-SNAPSHOT</version>
   </parent>
 
   <groupId>com.intel.hibench</groupId>
   <artifactId>hibench-common</artifactId>
   <packaging>jar</packaging>
-  <version>6.1-SNAPSHOT</version>
+  <version>6.2-SNAPSHOT</version>
   <name>hibench-common</name>
 
   <dependencies>
@@ -40,23 +40,32 @@
     </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_${scala.binary.version}</artifactId>
-      <version>${kafka.version}</version>
+      <artifactId>kafka_2.12</artifactId>
+      <version>2.1.1.0-mapr-700</version>
+
     </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
-      <version>${kafka.version}</version>
+      <version>2.1.1.0-mapr-700</version>
+
     </dependency>
     <dependency>
       <groupId>com.mapr.hadoop</groupId>
       <artifactId>maprfs</artifactId>
       <version>${core.version}</version>
+
     </dependency>
     <dependency>
       <groupId>com.mapr.streams</groupId>
       <artifactId>mapr-streams</artifactId>
       <version>${core.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.kafka</groupId>
+          <artifactId>connect-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
